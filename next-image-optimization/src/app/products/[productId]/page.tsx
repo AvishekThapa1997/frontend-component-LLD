@@ -1,7 +1,6 @@
 import ClientDimension from "@/app/ClientDimension";
-import NextImage from "@/app/NextImage";
 import React from "react";
-import "../../product.css";
+import NextImage from "@/app/NextImage";
 
 interface ProductDetailPageParams {
   params: {
@@ -17,40 +16,23 @@ const ProductDetailPage = async ({
 
   return (
     <>
-      <ClientDimension />
-      <div
-        className="product-detail-container"
-        style={{
-          maxInlineSize: "60rem",
-          marginInline: "auto",
-        }}
-      >
-        <NextImage
-          id="product-image"
-          height={800}
-          width={800}
-          src={result.images[0]}
-          alt={result.title}
-          quality={75}
-          fetchPriority="high"
-          sizes="(min-width:1024px) calc(50vw - 1rem) , calc(100vw - 1rem)"
-        />
-
-        <div
-          style={{
-            border: "2px solid black",
-            padding: "1rem",
-          }}
-        >
-          <h1
-            style={{
-              marginBlockEnd: "0.8rem",
-            }}
-          >
-            {result.title}
-          </h1>
+      <div className="grid p-6 md:p-4 gap-6 lg:grid-cols-[auto,1fr] md:gap-4 max-w-6xl mx-auto">
+        <div className="border-2 rounded overflow-hidden">
+          <NextImage
+            height={500}
+            width={500}
+            src={result.images[0]}
+            alt={result.title}
+            quality={75}
+            className="mx-auto max-w-full object-contain h-auto aspect-square bg-gray-100"
+            sizes="(min-width:1024px) calc(30vw - 1rem) , (min-width:768px) calc(35vw - 1rem) , (min-width:640px) calc(30vw - 1rem) , calc(40vw - 1rem)"
+          />
+        </div>
+        <div className="h-full space-y-3">
+          <h1 className="text-2xl font-medium md:text-5xl">{result.title}</h1>
           <p>{result.description}</p>
         </div>
+        <ClientDimension />
       </div>
     </>
   );
