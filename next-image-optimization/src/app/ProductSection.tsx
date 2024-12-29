@@ -3,7 +3,7 @@ import { ProductDto } from "./types";
 import Products from "./Products";
 
 const ProductSection = async () => {
-  const response = await fetch("https://dummyjson.com/products");
+  const response = await fetch("https://dummyjson.com/products?limit=50");
   const { products } = await response.json();
   const productDto = products.map(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
